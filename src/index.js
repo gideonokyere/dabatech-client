@@ -9,7 +9,7 @@ import 'antd/dist/antd.css';
 import reportWebVitals from './reportWebVitals';
 
 const httpLink = createHttpLink({
-  uri:'/graphql'
+  uri:'https://dabatech.herokuapp.com/graphql'
 });
 
 const authLink = setContext((_,{headers})=>{
