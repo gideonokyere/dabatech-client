@@ -1,24 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import React,{createContext} from 'react';
+import {Route,Routes} from 'react-router-dom';
+import SignInPage from './pages/SignIn';
+import SignUpPage from './pages/Signup';
+import ProfilePage from './pages/Profile';
+import { ProtectedRoute,RedirectRoute } from './components/ProtectedRoute';
+import NavBar from './components/Navbar';
+
+import {Layout} from 'antd';
+
+export const userData = createContext({data:{}});
+
+const {Header,Content} = Layout;
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+     <>
+      <Header style={{backgroundColor:"#FFFF"}}>
+        <NavBar/>
+      </Header>
+
+      <Content>
+        <Routes>
+          <Route exact path='/' element={<RedirectRoute><SignInPage/></RedirectRoute>}/>
+          <Route path='/signup' element={<RedirectRoute><SignUpPage/></RedirectRoute>}/>
+          <Route path='/profile' element={<ProtectedRoute><ProfilePage/></ProtectedRoute>}/>
+        </Routes>
+      </Content>
+     </>
   );
 }
 
