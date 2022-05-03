@@ -16,7 +16,7 @@ const SignInPage = () =>{
     const navigate = useNavigate();
 
     if(error){
-        message.error(error.message.split(':')[1];
+      return <div>{message.error(error.message.split(':')[1])}</div>
     }
 
     const onFinish = async(values) =>{
